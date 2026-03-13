@@ -48,7 +48,7 @@ def load_raw_data(filename='raw_prices.csv'):
     # Had to explicitly define it as datetime
     df = pd.read_csv(file_path, index_col=0)
     df.index = pd.to_datetime(df.index)
-    logger.info(f"  ✓ Loaded {df.shape[0]} rows × {df.shape[1]} columns")
+    logger.info(f"  [OK] Loaded {df.shape[0]} rows × {df.shape[1]} columns")
 
     return df
 
@@ -89,11 +89,11 @@ def check_data_quality(df):
     # Check for stocks below threshold
     failing_stocks = quality_report[~quality_report['Passes_Threshold']]
     if not failing_stocks.empty:
-        logger.warning(f"\n⚠ {len(failing_stocks)} stock(s) below {MIN_DATA_COMPLETENESS*100}% completeness threshold:")
+        logger.warning(f"\n[WARNING] {len(failing_stocks)} stock(s) below {MIN_DATA_COMPLETENESS*100}% completeness threshold:")
         for ticker in failing_stocks.index:
             logger.warning(f"  - {ticker}: {quality_report.loc[ticker, 'Completeness']:.2f}%")
     else:
-        logger.info(f"\n✓ All stocks meet {MIN_DATA_COMPLETENESS*100}% completeness threshold")
+        logger.info(f"\n[OK] All stocks meet {MIN_DATA_COMPLETENESS*100}% completeness threshold")
 
     return quality_report
 
@@ -135,7 +135,7 @@ def handle_missing_data(df, method='forward_fill'):
 
     final_missing = df_clean.isnull().sum().sum()
     logger.info(f"  Final missing values: {final_missing}")
-    logger.info(f"  ✓ Cleaned {initial_missing - final_missing} missing values")
+    logger.info(f"  [OK] Cleaned {initial_missing - final_missing} missing values")
 
     return df_clean
 
@@ -169,7 +169,7 @@ def compute_daily_returns(df, return_type='simple'):
     # Drop first row (NaN from pct_change)
     returns = returns.iloc[1:]
 
-    logger.info(f"  ✓ Computed returns: {returns.shape[0]} periods × {returns.shape[1]} stocks")
+    logger.info(f"  [OK] Computed returns: {returns.shape[0]} periods × {returns.shape[1]} stocks")
     logger.info(f"  Date range: {returns.index[0].date()} to {returns.index[-1].date()}")
 
     return returns
@@ -209,7 +209,7 @@ def compute_descriptive_statistics(returns, prices):
 
     stats = stats.round(4)
 
-    logger.info("  ✓ Statistics computed")
+    logger.info("  [OK] Statistics computed")
     logger.info(f"\nDescriptive Statistics (Top 10 by Total Return):")
     print(stats.nlargest(10, 'Total_Return'))
 
@@ -244,9 +244,9 @@ def save_processed_data(prices, returns, stats):
     logger.info("="*80)
     logger.info("SAVED PROCESSED DATA")
     logger.info("="*80)
-    logger.info(f"✓ Aligned prices: {prices_path}")
-    logger.info(f"✓ Daily returns: {returns_path}")
-    logger.info(f"✓ Descriptive stats: {stats_path}")
+    logger.info(f"[OK] Aligned prices: {prices_path}")
+    logger.info(f"[OK] Daily returns: {returns_path}")
+    logger.info(f"[OK] Descriptive stats: {stats_path}")
 
 
 def main():
@@ -275,7 +275,7 @@ def main():
         save_processed_data(clean_prices, daily_returns, desc_stats)
 
         logger.info("")
-        logger.info("✅ DATA PREPARATION COMPLETE!")
+        logger.info("[OK] DATA PREPARATION COMPLETE!")
         logger.info(f"Next step: Run 03_correlation_analysis.py")
 
     except Exception as e:

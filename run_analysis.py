@@ -60,7 +60,7 @@ def run_script(script_name, script_number):
         exec(compile(code, script_path, 'exec'), {'__name__': '__main__', '__file__': str(script_path)})
 
         elapsed = time.time() - start_time
-        logger.info(f"✓ {script_name} completed successfully in {elapsed:.2f} seconds")
+        logger.info(f"[OK] {script_name} completed successfully in {elapsed:.2f} seconds")
 
         return True
 
