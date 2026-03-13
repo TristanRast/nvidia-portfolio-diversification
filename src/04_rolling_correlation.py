@@ -34,7 +34,7 @@ def load_returns_data(filename='daily_returns.csv'):
     file_path = os.path.join(DATA_PATHS['processed'], filename)
     logger.info(f"Loading returns data from: {file_path}")
     df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-    logger.info(f"  ✓ Loaded {df.shape[0]} periods × {df.shape[1]} stocks")
+    logger.info(f"  [OK] Loaded {df.shape[0]} periods × {df.shape[1]} stocks")
     return df
 
 
@@ -79,9 +79,9 @@ def compute_rolling_correlation(returns, target, window, min_periods=None):
     # Drop initial NaN rows
     rolling_corr = rolling_corr.dropna(how='all')
 
-    logger.info(f"  ✓ Computed rolling correlations for {rolling_corr.shape[1]} stocks")
-    logger.info(f"  ✓ Date range: {rolling_corr.index[0].date()} to {rolling_corr.index[-1].date()}")
-    logger.info(f"  ✓ Observations: {len(rolling_corr)}")
+    logger.info(f"  [OK] Computed rolling correlations for {rolling_corr.shape[1]} stocks")
+    logger.info(f"  [OK] Date range: {rolling_corr.index[0].date()} to {rolling_corr.index[-1].date()}")
+    logger.info(f"  [OK] Observations: {len(rolling_corr)}")
 
     return rolling_corr
 
@@ -224,11 +224,11 @@ def save_rolling_correlation_results(rolling_corr_short, rolling_corr_long,
     logger.info("="*80)
     logger.info("SAVED ROLLING CORRELATION RESULTS")
     logger.info("="*80)
-    logger.info(f"✓ Rolling correlation (6m): {rolling_short_path}")
-    logger.info(f"✓ Rolling correlation (12m): {rolling_long_path}")
-    logger.info(f"✓ Stability metrics (6m): {stability_short_path}")
-    logger.info(f"✓ Stability metrics (12m): {stability_long_path}")
-    logger.info(f"✓ Consistency analysis: {consistency_path}")
+    logger.info(f"[OK] Rolling correlation (6m): {rolling_short_path}")
+    logger.info(f"[OK] Rolling correlation (12m): {rolling_long_path}")
+    logger.info(f"[OK] Stability metrics (6m): {stability_short_path}")
+    logger.info(f"[OK] Stability metrics (12m): {stability_long_path}")
+    logger.info(f"[OK] Consistency analysis: {consistency_path}")
 
 
 def main():
@@ -271,7 +271,7 @@ def main():
         )
 
         logger.info("")
-        logger.info("✅ ROLLING CORRELATION ANALYSIS COMPLETE!")
+        logger.info("[OK] ROLLING CORRELATION ANALYSIS COMPLETE!")
         logger.info(f"Next step: Run 05_portfolio_analysis.py")
 
     except Exception as e:

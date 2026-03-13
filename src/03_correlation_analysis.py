@@ -49,7 +49,7 @@ def load_returns_data(filename='daily_returns.csv'):
     logger.info(f"Loading returns data from: {file_path}")
 
     df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-    logger.info(f"  ✓ Loaded {df.shape[0]} periods × {df.shape[1]} stocks")
+    logger.info(f"  [OK] Loaded {df.shape[0]} periods for {df.shape[1]} stocks")
 
     return df
 
@@ -79,7 +79,7 @@ def compute_correlation_matrix(returns, method='pearson'):
     else:
         raise ValueError(f"Unknown method: {method}")
 
-    logger.info(f"  ✓ Correlation matrix computed: {corr_matrix.shape}")
+    logger.info(f"  [OK] Correlation matrix computed: {corr_matrix.shape}")
 
     return corr_matrix
 
@@ -157,7 +157,7 @@ def compute_correlation_with_pvalues(returns, target=TARGET_TICKER):
         })
 
     results_df = pd.DataFrame(results).set_index('Ticker')
-    logger.info(f"  ✓ Computed correlations for {len(results_df)} stocks")
+    logger.info(f"  [OK] Computed correlations for {len(results_df)} stocks")
 
     return results_df
 
@@ -253,9 +253,9 @@ def save_correlation_results(corr_matrix, classification, top_noncorr):
     logger.info("="*80)
     logger.info("SAVED CORRELATION RESULTS")
     logger.info("="*80)
-    logger.info(f"✓ Correlation matrix: {corr_path}")
-    logger.info(f"✓ Stock classification: {class_path}")
-    logger.info(f"✓ Top non-correlated: {top_path}")
+    logger.info(f"[OK] Correlation matrix: {corr_path}")
+    logger.info(f"[OK] Stock classification: {class_path}")
+    logger.info(f"[OK] Top non-correlated: {top_path}")
 
 
 def main():
@@ -288,7 +288,7 @@ def main():
         save_correlation_results(pearson_corr, classification, top_noncorrelated)
 
         logger.info("")
-        logger.info("✅ CORRELATION ANALYSIS COMPLETE!")
+        logger.info("[OK] CORRELATION ANALYSIS COMPLETE!")
         logger.info(f"Next step: Run 04_rolling_correlation.py")
 
     except Exception as e:

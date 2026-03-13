@@ -62,7 +62,7 @@ def download_stock_data(ticker, start_date, end_date):
         adj_close = hist['Close']
         adj_close.name = ticker
 
-        logger.info(f"  ✓ {ticker}: {len(adj_close)} data points from {adj_close.index[0].date()} to {adj_close.index[-1].date()}")
+        logger.info(f"  [OK] {ticker}: {len(adj_close)} data points from {adj_close.index[0].date()} to {adj_close.index[-1].date()}")
         return adj_close
 
     except Exception as e:
@@ -141,7 +141,7 @@ def save_raw_data(df, filename='raw_prices.csv'):
     os.makedirs(DATA_PATHS['raw'], exist_ok=True)
 
     df.to_csv(output_path)
-    logger.info(f"✓ Raw data saved to: {output_path}")
+    logger.info(f"[OK] Raw data saved to: {output_path}")
     logger.info(f"  Shape: {df.shape}")
     logger.info(f"  Columns: {', '.join(df.columns.tolist())}")
 
@@ -173,7 +173,7 @@ def main():
         print(missing_pct[missing_pct > 0])
 
         logger.info("")
-        logger.info("✅ DATA COLLECTION COMPLETE!")
+        logger.info("[OK] DATA COLLECTION COMPLETE!")
         logger.info(f"Next step: Run 02_data_preparation.py")
 
     except Exception as e:

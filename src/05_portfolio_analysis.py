@@ -37,7 +37,7 @@ def load_data():
     prices = pd.read_csv(prices_path, index_col=0, parse_dates=True)
     classification = pd.read_csv(classification_path, index_col=0)
 
-    logger.info("✓ Loaded returns, prices, and classification data")
+    logger.info("[OK] Loaded returns, prices, and classification data")
     return returns, prices, classification
 
 
@@ -271,8 +271,8 @@ def save_portfolio_results(comparison_df, diversified_metrics):
     logger.info("="*80)
     logger.info("SAVED PORTFOLIO ANALYSIS RESULTS")
     logger.info("="*80)
-    logger.info(f"✓ Portfolio comparison: {comparison_path}")
-    logger.info(f"✓ Diversified metrics: {diversified_path}")
+    logger.info(f"[OK] Portfolio comparison: {comparison_path}")
+    logger.info(f"[OK] Diversified metrics: {diversified_path}")
 
 
 def main():
@@ -295,7 +295,7 @@ def main():
         save_portfolio_results(comparison, diversified)
 
         logger.info("")
-        logger.info("✅ PORTFOLIO ANALYSIS COMPLETE!")
+        logger.info("[OK] PORTFOLIO ANALYSIS COMPLETE!")
         logger.info(f"Next step: Run 06_visualization.py")
 
     except Exception as e:

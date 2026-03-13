@@ -54,7 +54,7 @@ def load_all_data():
                                    index_col=0, parse_dates=True),
     }
 
-    logger.info("  ✓ All data loaded successfully")
+    logger.info("  [OK] All data loaded successfully")
     return data
 
 
@@ -94,7 +94,7 @@ def plot_correlation_heatmap(corr_matrix, output_path):
     plt.savefig(output_path, dpi=PLOT_SETTINGS['dpi'], bbox_inches='tight')
     plt.close()
 
-    logger.info(f"  ✓ Saved: {output_path}")
+    logger.info(f"  [OK] Saved: {output_path}")
 
 
 def plot_nvda_correlations_barplot(classification, output_path):
@@ -153,7 +153,7 @@ def plot_nvda_correlations_barplot(classification, output_path):
     plt.savefig(output_path, dpi=PLOT_SETTINGS['dpi'], bbox_inches='tight')
     plt.close()
 
-    logger.info(f"  ✓ Saved: {output_path}")
+    logger.info(f"  [OK] Saved: {output_path}")
 
 
 def plot_correlation_distribution(classification, output_path):
@@ -191,5 +191,5 @@ def plot_correlation_distribution(classification, output_path):
     plt.savefig(output_path, dpi=PLOT_SETTINGS['dpi'], bbox_inches='tight')
     plt.close()
 
-    logger.info(f"  ✓ Saved: {output_path}")
+    logger.info(f"  [OK] Saved: {output_path}")
 
