@@ -396,15 +396,6 @@ Sharpe_Improvement = (SR_diversified - SR_baseline) / SR_baseline × 100%
 - Third-party libraries acknowledged
 - Collaboration limited to instructor guidance
 
-### 10.3 Disclaimers
-
-- **Educational Purpose:** Analysis for academic capstone project
-- **Not Financial Advice:** Results should not be construed as investment recommendations
-- **No Warranties:** Data and analysis provided "as-is" without guarantees
-- **Past Performance:** Historical correlations do not guarantee future results
-
----
-
 ## References
 
 1. Markowitz, H. (1952). Portfolio Selection. *The Journal of Finance*, 7(1), 77-91.
@@ -414,5 +405,5 @@ Sharpe_Improvement = (SR_diversified - SR_baseline) / SR_baseline × 100%
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** March 11, 2026
+**Document Version:** 1.1  
+**Last Updated:** March 13, 2026
