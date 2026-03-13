@@ -144,11 +144,6 @@ def main():
     logger.info("   - Visualizations: outputs/figures/")
     logger.info("   - Reports: outputs/reports/")
     logger.info("")
-    logger.info("Next Steps:")
-    logger.info("   1. Review visualizations in outputs/figures/")
-    logger.info("   2. Review analysis results in data/results/")
-    logger.info("   3. Use findings to write your final report")
-    logger.info("   4. Record Panopto presentation demonstrating the code")
     logger.info("")
 
     return True

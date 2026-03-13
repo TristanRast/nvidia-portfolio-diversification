@@ -47,7 +47,7 @@ def load_raw_data(filename='raw_prices.csv'):
     # Had a bug here. Old pandas versions use to detect and convert to datetime
     # Had to explicitly define it as datetime
     df = pd.read_csv(file_path, index_col=0)
-    df.index = pd.to_datetime(df.index)
+    df.index = pd.to_datetime(df.index, utc=True).tz_convert(None)
     logger.info(f"  [OK] Loaded {df.shape[0]} rows × {df.shape[1]} columns")
 
     return df
@@ -89,7 +89,7 @@ def check_data_quality(df):
     # Check for stocks below threshold
     failing_stocks = quality_report[~quality_report['Passes_Threshold']]
     if not failing_stocks.empty:
-        logger.warning(f"\n[WARNING] {len(failing_stocks)} stock(s) below {MIN_DATA_COMPLETENESS*100}% completeness threshold:")
+        logger.warning(f"\n⚠ {len(failing_stocks)} stock(s) below {MIN_DATA_COMPLETENESS*100}% completeness threshold:")
         for ticker in failing_stocks.index:
             logger.warning(f"  - {ticker}: {quality_report.loc[ticker, 'Completeness']:.2f}%")
     else:
