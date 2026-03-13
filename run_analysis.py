@@ -57,7 +57,7 @@ def run_script(script_name, script_number):
         with open(script_path, 'r') as f:
             code = f.read()
 
-        exec(compile(code, script_path, 'exec'), {'__name__': '__main__'})
+        exec(compile(code, script_path, 'exec'), {'__name__': '__main__', '__file__': str(script_path)})
 
         elapsed = time.time() - start_time
         logger.info(f"✓ {script_name} completed successfully in {elapsed:.2f} seconds")
@@ -65,7 +65,7 @@ def run_script(script_name, script_number):
         return True
 
     except Exception as e:
-        logger.error(f"✗ Error in {script_name}: {str(e)}")
+        logger.error(f"[FAILED] Error in {script_name}: {str(e)}")
         logger.error(f"Pipeline halted at Step {script_number}")
         return False
 
@@ -119,7 +119,7 @@ def main():
     for i, (script_file, description) in enumerate(steps, start=1):
         success = run_script(script_file, i)
         if not success:
-            logger.error("\n❌ PIPELINE FAILED")
+            logger.error("\n[PIPELINE FAILED]")
             logger.error(f"Failed at: {description}")
             logger.error("Please check the error messages above and fix before re-running.")
             return False
@@ -134,17 +134,17 @@ def main():
 
     logger.info("")
     logger.info("="*80)
-    logger.info("✅ PIPELINE COMPLETED SUCCESSFULLY")
+    logger.info("[OK] PIPELINE COMPLETED SUCCESSFULLY")
     logger.info("="*80)
     logger.info(f"Total execution time: {minutes}m {seconds}s")
     logger.info("")
-    logger.info("📊 Output Locations:")
+    logger.info("Output Locations:")
     logger.info("   - Processed data: data/processed/")
     logger.info("   - Analysis results: data/results/")
     logger.info("   - Visualizations: outputs/figures/")
     logger.info("   - Reports: outputs/reports/")
     logger.info("")
-    logger.info("📝 Next Steps:")
+    logger.info("Next Steps:")
     logger.info("   1. Review visualizations in outputs/figures/")
     logger.info("   2. Review analysis results in data/results/")
     logger.info("   3. Use findings to write your final report")
