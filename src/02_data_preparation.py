@@ -44,7 +44,10 @@ def load_raw_data(filename='raw_prices.csv'):
     file_path = os.path.join(DATA_PATHS['raw'], filename)
     logger.info(f"Loading raw data from: {file_path}")
 
-    df = pd.read_csv(file_path, index_col=0, parse_dates=True)
+    # Had a bug here. Old pandas versions use to detect and convert to datetime
+    # Had to explicitly define it as datetime
+    df = pd.read_csv(file_path, index_col=0)
+    df.index = pd.to_datetime(df.index)
     logger.info(f"  ✓ Loaded {df.shape[0]} rows × {df.shape[1]} columns")
 
     return df
@@ -119,7 +122,8 @@ def handle_missing_data(df, method='forward_fill'):
 
     if method == 'forward_fill':
         # Forward fill then backward fill for any remaining
-        df_clean = df.fillna(method='ffill').fillna(method='bfill')
+        # Also needed to update methods to newer pandas version
+        df_clean = df.ffill().bfill()
     elif method == 'drop':
         # Drop rows with any missing values
         df_clean = df.dropna()
