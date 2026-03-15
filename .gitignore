@@ -55,13 +55,6 @@ data/processed/*
 data/results/*
 !data/results/.gitkeep
 
-# Output files (regeneratable)
-outputs/figures/*.png
-outputs/figures/*.jpg
-outputs/figures/*.pdf
-outputs/reports/*.csv
-outputs/reports/*.xlsx
-outputs/reports/*.html
 
 # Keep example outputs (small files for documentation)
 !outputs/figures/example_*.png
@@ -99,3 +92,5 @@ PROJECT_SUMMARY.md
 installation_setup.md
 git_instructions.md
 submission.md
+BHN1-Task3-Report.md
+BHN1-Task3-Report.docx
